@@ -47,11 +47,12 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           crossAxisCount: 2,
+          childAspectRatio: 1.4,
         ),
         padding: EdgeInsets.all(10),
         itemCount: pokedex.length,
         itemBuilder: (BuildContext context, int index) {
-          return PokemonCard(pokedex[index]['name']);
+          return PokemonCard(pokedex[index]);
         },
       ),
     );
