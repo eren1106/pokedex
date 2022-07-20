@@ -27,7 +27,7 @@ class PokemonCard extends StatelessWidget {
                         : firstType == "Normal"
                             ? Colors.grey
                             : firstType == "Electric"
-                                ? Colors.yellowAccent
+                                ? Colors.yellow
                                 : firstType == "Ice"
                                     ? Colors.lightBlueAccent
                                     : firstType == "Fighting"
@@ -66,39 +66,79 @@ class PokemonCard extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
         child: Stack(
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    id,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      color: Colors.black26,
+            Positioned(
+              bottom: -10,
+              right: -10,
+              child: Image.asset(
+                'images/pokeball.png',
+                width: 100,
+                fit: BoxFit.fitWidth,
+                color: Colors.white.withOpacity(0.5),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      id,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        color: Colors.black.withOpacity(0.2),
+                      ),
                     ),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    name,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                for (var type in types)
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(type),
-                  )
-              ],
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 5),
+                      child: Text(
+                        name,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  for (var type in types)
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.3),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 5,
+                              horizontal: 12,
+                            ),
+                            child: Text(
+                              type,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                ],
+              ),
             ),
             Positioned(
               right: 0,
