@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:pokedex/info_screen.dart';
 
 class PokemonCard extends StatelessWidget {
   PokemonCard(this.pokemonInfo);
@@ -14,59 +15,61 @@ class PokemonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: firstType == "Grass"
-            ? Colors.greenAccent[400]
-            : firstType == "Fire"
-                ? Colors.redAccent
-                : firstType == "Fire"
-                    ? Colors.redAccent
-                    : firstType == "Water"
-                        ? Colors.blueAccent
-                        : firstType == "Normal"
-                            ? Colors.grey
-                            : firstType == "Electric"
-                                ? Colors.yellow
-                                : firstType == "Ice"
-                                    ? Colors.lightBlueAccent
-                                    : firstType == "Fighting"
-                                        ? Colors.red[700]
-                                        : firstType == "Fire"
-                                            ? Colors.redAccent
-                                            : firstType == "Poison"
-                                                ? Colors.purple
-                                                : firstType == "Ground"
-                                                    ? Colors.orange[400]
-                                                    : firstType == "Flying"
-                                                        ? Colors.blueAccent[100]
-                                                        : firstType == "Psychic"
-                                                            ? Colors.pinkAccent
-                                                            : firstType == "Bug"
-                                                                ? Colors.lightGreen[
-                                                                    600]
-                                                                : firstType ==
-                                                                        "Rock"
-                                                                    ? Colors
-                                                                        .brown
-                                                                    : firstType ==
-                                                                            "Ghost"
-                                                                        ? Colors.purple[
-                                                                            900]
-                                                                        : firstType ==
-                                                                                "Dark"
-                                                                            ? Colors.blueGrey[900]
-                                                                            : firstType == "Fire"
-                                                                                ? Colors.redAccent
-                                                                                : firstType == "Dragon"
-                                                                                    ? Colors.indigo
-                                                                                    : firstType == "Steel"
-                                                                                        ? Colors.blueGrey[300]
-                                                                                        : Colors.pink[100],
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => InfoScreen(pokemonInfo)));
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: firstType == "Grass"
+              ? Colors.greenAccent[400]
+              : firstType == "Fire"
+                  ? Colors.redAccent
+                  : firstType == "Fire"
+                      ? Colors.redAccent
+                      : firstType == "Water"
+                          ? Colors.blueAccent
+                          : firstType == "Normal"
+                              ? Colors.grey
+                              : firstType == "Electric"
+                                  ? Colors.yellow
+                                  : firstType == "Ice"
+                                      ? Colors.lightBlueAccent
+                                      : firstType == "Fighting"
+                                          ? Colors.red[700]
+                                          : firstType == "Fire"
+                                              ? Colors.redAccent
+                                              : firstType == "Poison"
+                                                  ? Colors.purple
+                                                  : firstType == "Ground"
+                                                      ? Colors.orange[400]
+                                                      : firstType == "Flying"
+                                                          ? Colors.blueAccent[100]
+                                                          : firstType == "Psychic"
+                                                              ? Colors.pinkAccent
+                                                              : firstType == "Bug"
+                                                                  ? Colors.lightGreen[
+                                                                      600]
+                                                                  : firstType ==
+                                                                          "Rock"
+                                                                      ? Colors
+                                                                          .brown
+                                                                      : firstType ==
+                                                                              "Ghost"
+                                                                          ? Colors.purple[
+                                                                              900]
+                                                                          : firstType ==
+                                                                                  "Dark"
+                                                                              ? Colors.blueGrey[900]
+                                                                              : firstType == "Fire"
+                                                                                  ? Colors.redAccent
+                                                                                  : firstType == "Dragon"
+                                                                                      ? Colors.indigo
+                                                                                      : firstType == "Steel"
+                                                                                          ? Colors.blueGrey[300]
+                                                                                          : Colors.pink[100],
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+        ),
         child: Stack(
           children: [
             Positioned(
@@ -143,12 +146,15 @@ class PokemonCard extends StatelessWidget {
             Positioned(
               right: 0,
               bottom: 0,
-              child: CachedNetworkImage(
-                imageUrl: imgSrc,
-                height: 100,
-                fit: BoxFit.fitHeight,
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+              child: Hero(
+                tag: 'pokemonImg'+name,
+                child: CachedNetworkImage(
+                  imageUrl: imgSrc,
+                  height: 100,
+                  fit: BoxFit.fitHeight,
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
             ),
           ],
