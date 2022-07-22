@@ -17,8 +17,11 @@ class PokemonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => InfoScreen(pokemonInfo, pokedex)));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => InfoScreen(pokemonInfo, pokedex)));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -45,10 +48,14 @@ class PokemonCard extends StatelessWidget {
                                                   : firstType == "Ground"
                                                       ? Colors.orange[400]
                                                       : firstType == "Flying"
-                                                          ? Colors.blueAccent[100]
-                                                          : firstType == "Psychic"
-                                                              ? Colors.pinkAccent
-                                                              : firstType == "Bug"
+                                                          ? Colors
+                                                              .blueAccent[100]
+                                                          : firstType ==
+                                                                  "Psychic"
+                                                              ? Colors
+                                                                  .pinkAccent
+                                                              : firstType ==
+                                                                      "Bug"
                                                                   ? Colors.lightGreen[
                                                                       600]
                                                                   : firstType ==
@@ -57,10 +64,9 @@ class PokemonCard extends StatelessWidget {
                                                                           .brown
                                                                       : firstType ==
                                                                               "Ghost"
-                                                                          ? Colors.purple[
-                                                                              900]
-                                                                          : firstType ==
-                                                                                  "Dark"
+                                                                          ? Colors
+                                                                              .purple[900]
+                                                                          : firstType == "Dark"
                                                                               ? Colors.blueGrey[900]
                                                                               : firstType == "Fire"
                                                                                   ? Colors.redAccent
@@ -93,6 +99,7 @@ class PokemonCard extends StatelessWidget {
                     child: Text(
                       id,
                       style: TextStyle(
+                        fontSize: 10,
                         fontWeight: FontWeight.w900,
                         color: Colors.black.withOpacity(0.2),
                       ),
@@ -105,7 +112,7 @@ class PokemonCard extends StatelessWidget {
                       child: Text(
                         name,
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 15,
                           fontWeight: FontWeight.w900,
                           color: Colors.white,
                         ),
@@ -133,7 +140,7 @@ class PokemonCard extends StatelessWidget {
                               type,
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 12,
+                                fontSize: 10,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -148,12 +155,20 @@ class PokemonCard extends StatelessWidget {
               right: 0,
               bottom: 0,
               child: Hero(
-                tag: 'pokemonImg'+name,
+                tag: 'pokemonImg' + name,
                 child: CachedNetworkImage(
                   imageUrl: imgSrc,
-                  height: 100,
+                  height: 90,
                   fit: BoxFit.fitHeight,
-                  placeholder: (context, url) => CircularProgressIndicator(),
+                  placeholder: (context, url) => Transform.scale(
+                    scale: 0.5,
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.white,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Colors.grey,
+                      ),
+                    ),
+                  ),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),

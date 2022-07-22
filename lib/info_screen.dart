@@ -108,7 +108,7 @@ class InfoScreen extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+              padding: const EdgeInsets.only(top: 20, bottom: 10, left: 25, right: 25),
               child: Column(
                 children: [
                   Row(
@@ -251,6 +251,7 @@ class InfoScreen extends StatelessWidget {
                         ),
                       ),
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           pokemonInfo['prev_evolution'] == null
                               ? Container()
@@ -311,7 +312,7 @@ class EvolutionCard extends StatelessWidget {
               child: Text(
                 isNext ? "Next Evolution" : "Prev Evolution",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 15,
                   fontWeight: FontWeight.bold,
                   color: Colors.black54,
                 ),
@@ -365,7 +366,7 @@ class InfoText extends StatelessWidget {
         text,
         style: GoogleFonts.openSans(
           textStyle: TextStyle(
-            fontSize: 16,
+            fontSize: 15,
             fontWeight: isBold ? FontWeight.bold : FontWeight.w500,
             color: isBold ? Colors.black : Colors.black54,
           ),
