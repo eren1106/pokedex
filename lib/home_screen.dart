@@ -26,9 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var res = await http.get(url);
     if (res.statusCode == 200) {
       pokedex = await jsonDecode(res.body)['pokemon'];
-      setState(() {
-        
-      });
+      setState(() {});
     } else {
       print(res.statusCode);
     }
@@ -37,11 +35,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Pokedex"),
-        backgroundColor: Color.fromARGB(255, 240, 0, 0),
-      ),
       backgroundColor: Color.fromARGB(255, 240, 240, 240),
+      appBar: AppBar(
+        title: Text(
+          'Pokedex',
+          style: TextStyle(
+            fontWeight: FontWeight.w900,
+            fontSize: 25,
+          ),
+        ),
+        backgroundColor: Colors.red,
+      ),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisSpacing: 10,
@@ -52,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: EdgeInsets.all(10),
         itemCount: pokedex.length,
         itemBuilder: (BuildContext context, int index) {
-          return PokemonCard(pokedex[index]);
+          return PokemonCard(pokedex[index], pokedex);
         },
       ),
     );

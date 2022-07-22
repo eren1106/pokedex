@@ -3,9 +3,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:pokedex/info_screen.dart';
 
 class PokemonCard extends StatelessWidget {
-  PokemonCard(this.pokemonInfo);
+  PokemonCard(this.pokemonInfo, this.pokedex);
 
   late final pokemonInfo;
+  late final pokedex;
 
   late String id = pokemonInfo['num'];
   late String name = pokemonInfo['name'];
@@ -17,7 +18,7 @@ class PokemonCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => InfoScreen(pokemonInfo)));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => InfoScreen(pokemonInfo, pokedex)));
       },
       child: Container(
         decoration: BoxDecoration(
